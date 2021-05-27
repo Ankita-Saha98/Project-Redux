@@ -4,34 +4,24 @@ export default function cardItems(state = initialState, action) {
     switch (action.type) {
         case ADD_TO_CART:
             // console.warn("reducer",action)
-            var temp=0;
-            for(var i = 0;i<state.length;i++){
-                if(state[i].initialState.id===action.data.id)
-                {
-                    state[i].initialState.quantity++;
-                    temp=1;
-                    break;
-                    
-                }
+            let index = state.findIndex(e => e.initialState.id === action.data.id);
+            if(index !== -1){
+                state[index].initialState.quantity++;
             }
-            if(temp!==1){
+            else{
                 return [
                     ...state,
                     {initialState: action.data}
                 ]
             }
         case REMOVE_TO_CART:
-            for(var i = 0;i<state.length;i++){
-                if(state[i].initialState.id===action.data)
-                {
-                    if(state[i].initialState.quantity===1){
-                        state.splice(i,1);
-                    }
-                    else{
-                        state[i].initialState.quantity--;
-                    }
-                    break;
-                    
+            let indexRemove = state.findIndex(e => e.initialState.id === action.data);
+            if(indexRemove !== -1){
+                if(state[indexRemove].initialState.quantity === 1){
+                    state.splice(indexRemove,1);
+                }
+                else{
+                    state[indexRemove].initialState.quantity--;
                 }
             }
             return[
@@ -43,4 +33,22 @@ export default function cardItems(state = initialState, action) {
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
