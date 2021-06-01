@@ -7,6 +7,9 @@ export default function cardItems(state = initialState, action) {
             let index = state.findIndex(e => e.initialState.id === action.data.id);
             if(index !== -1){
                 state[index].initialState.quantity++;
+                return [
+                    ...state,
+                ]
             }
             else{
                 return [
@@ -29,36 +32,21 @@ export default function cardItems(state = initialState, action) {
             ]
         case SET_QUANTITY_TO_CART:
             let index1 = state.findIndex(e => e.initialState.id === action.data.id);
+            console.log(action.data.quantity)
             if(index1 !== -1){
-                state[index1].initialState.quantity=Math.floor(action.data.quantity);
+                if(Math.floor(action.data.quantity)=== 0){
+                    state[index1].initialState.quantity= null;
+                }
+                else{
+                    state[index1].initialState.quantity=Math.floor(action.data.quantity);
+                }
             }
-            else{
-                return [
-                    ...state,
-                ]
-            }
+            return [
+                ...state,
+            ]
         default:
             return state
     }
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
