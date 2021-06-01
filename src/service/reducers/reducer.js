@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_TO_CART } from '../constants'
+import { ADD_TO_CART, REMOVE_TO_CART,SET_QUANTITY_TO_CART } from '../constants'
 const initialState = []
 export default function cardItems(state = initialState, action) {
     switch (action.type) {
@@ -27,6 +27,16 @@ export default function cardItems(state = initialState, action) {
             return[
                 ...state,
             ]
+        case SET_QUANTITY_TO_CART:
+            let index1 = state.findIndex(e => e.initialState.id === action.data.id);
+            if(index1 !== -1){
+                state[index1].initialState.quantity=Math.floor(action.data.quantity);
+            }
+            else{
+                return [
+                    ...state,
+                ]
+            }
         default:
             return state
     }
