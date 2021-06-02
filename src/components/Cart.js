@@ -2,13 +2,12 @@ import React from 'react'
 class Cart extends React.Component {
     constructor(props) {
         super(props);
-        
         this.handleChange = this.handleChange.bind(this);
     }
     handleChange(event,id) {
         let temp;
-        if (event > 0) {
-            temp= event;
+        if(event > 0){
+            temp=event;
         }
         this.props.setQuantityHandler({quantity: temp , id: id});
     }
@@ -34,7 +33,7 @@ class Cart extends React.Component {
                                             <td>
                                                 <input
                                                 onChange={(e)=>this.handleChange(e.target.value,item.initialState.id)}
-                                                value= {item.initialState.quantity}
+                                                value={item.initialState.quantity}
                                                 type= "number"
                                                 />
                                             </td>

@@ -3,7 +3,7 @@ function Header(props) {
     console.log(props.data);
     var count = 0;
     for (var j = 0; j < props.data.length; j++) {
-        count = count + props.data[j].initialState.quantity
+        count = count + Math.floor(props.data[j].initialState.quantity)
     }
     return (
         <div>
